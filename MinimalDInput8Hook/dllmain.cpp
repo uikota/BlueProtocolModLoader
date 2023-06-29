@@ -3,6 +3,9 @@
 #include "DInput8.h"
 #include "Hook.h"
 #include "CustomHooks.h"
+#include <codecvt>
+#include <string>
+#include <filesystem>
 
 void Init()
 {
@@ -20,6 +23,39 @@ void Init()
 	SetupHooks();
 }
 
+void LoadMods() {
+	std::string modsPath = "./mods";
+
+	CreateDirectoryA(modsPath.c_str(), NULL);
+	printf("Create Mods Directory [%s]", modsPath.c_str());
+
+	printf("Start Loading Mods.");
+	std::string fileName = "\\*.dll";
+	std::string searchName = modsPath + fileName;
+
+	WIN32_FIND_DATAA  fd;
+	HANDLE find = FindFirstFileA(searchName.c_str(), &fd);
+
+	if (find != INVALID_HANDLE_VALUE) {
+		do {
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+				std::string dllPath = modsPath + "\\" + fd.cFileName;
+				std::wstring wideDllPath(dllPath.begin(), dllPath.end());
+				HMODULE hModule = LoadLibraryW(wideDllPath.c_str());
+				if (hModule != NULL) {
+					printf("Loaded [%s]", modsPath.c_str());
+				}
+				else {
+					printf("Failed [%s]", modsPath.c_str());
+				}
+			}
+		} while (FindNextFileA(find, &fd));
+	}
+	printf("End Loading Mods.");
+
+	FindClose(find);
+}
+
 BOOL APIENTRY DllMain(HMODULE Module,
 	DWORD  ReasonForCall,
 	LPVOID Reserved)
@@ -28,6 +64,7 @@ BOOL APIENTRY DllMain(HMODULE Module,
 	{
 	case DLL_PROCESS_ATTACH:
 		Init();
+		LoadMods();
 		break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
