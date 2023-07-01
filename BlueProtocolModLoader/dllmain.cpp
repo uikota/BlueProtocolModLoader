@@ -63,6 +63,7 @@ BOOL APIENTRY DllMain(HMODULE Module,
 	switch (ReasonForCall)
 	{
 	case DLL_PROCESS_ATTACH:
+		Init();
 		CreateThread(NULL, 0, Setup, NULL, 0, NULL);
 		break;
 	case DLL_THREAD_ATTACH:
@@ -74,7 +75,6 @@ BOOL APIENTRY DllMain(HMODULE Module,
 }
 
 static DWORD WINAPI Setup(LPVOID) {
-	Init();
 	LoadMods();
 	return 0;
 }
