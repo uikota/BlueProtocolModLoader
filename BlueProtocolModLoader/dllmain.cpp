@@ -1,6 +1,7 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "stdafx.h"
 #include "DInput8.h"
+#include "dllmain.h"
 #include <codecvt>
 #include <string>
 #include <filesystem>
@@ -62,8 +63,7 @@ BOOL APIENTRY DllMain(HMODULE Module,
 	switch (ReasonForCall)
 	{
 	case DLL_PROCESS_ATTACH:
-		Init();
-		LoadMods();
+		CreateThread(NULL, 0, Setup, NULL, 0, NULL);
 		break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
@@ -71,5 +71,11 @@ BOOL APIENTRY DllMain(HMODULE Module,
 		break;
 	}
 	return TRUE;
+}
+
+static DWORD WINAPI Setup(LPVOID) {
+	Init();
+	LoadMods();
+	return 0;
 }
 
