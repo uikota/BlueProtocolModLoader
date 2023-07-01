@@ -16,15 +16,19 @@ void Init()
 	{
 		OriginalFunction = (DirectInput8Create_t)GetProcAddress(DInput8DLL, "DirectInput8Create");
 	}
+
+	AllocConsole();
+	FILE* consoleStream;
+	freopen_s(&consoleStream, "CONOUT$", "w", stdout);
 }
 
 void LoadMods() {
 	std::string modsPath = "./plugins";
 
 	CreateDirectoryA(modsPath.c_str(), NULL);
-	printf("Create Mods Directory [%s]", modsPath.c_str());
+	printf("Create Mods Directory [%s]\n", modsPath.c_str());
 
-	printf("Start Loading Plugins.");
+	printf("Start Loading Plugins.\n");
 	std::string fileName = "\\*.dll";
 	std::string searchName = modsPath + fileName;
 
@@ -38,15 +42,15 @@ void LoadMods() {
 				std::wstring wideDllPath(dllPath.begin(), dllPath.end());
 				HMODULE hModule = LoadLibraryW(wideDllPath.c_str());
 				if (hModule != NULL) {
-					printf("Loaded [%s]", modsPath.c_str());
+					printf("Loaded [%s]\n", fd.cFileName);
 				}
 				else {
-					printf("Failed [%s]", modsPath.c_str());
+					printf("Failed [%s]\n", fd.cFileName);
 				}
 			}
 		} while (FindNextFileA(find, &fd));
 	}
-	printf("End Loading Plugins.");
+	printf("End Loading Plugins.\n");
 
 	FindClose(find);
 }
