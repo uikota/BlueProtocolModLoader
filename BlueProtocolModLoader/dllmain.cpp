@@ -5,6 +5,19 @@
 #include <codecvt>
 #include <string>
 #include <filesystem>
+#include <iostream>
+#include "MinHook.h"
+#pragma comment(lib, "libMinHook-x64-v141-mtd.lib")
+
+
+// FIXME MinHook‚Ì“±“ü‚ÆƒeƒXƒg
+void Test_MinHook() {
+	if (MH_Initialize() == MH_OK)
+	{
+		std::cout << "MH_OK" << std::endl;
+	}
+
+}
 
 void Init()
 {
@@ -76,6 +89,7 @@ BOOL APIENTRY DllMain(HMODULE Module,
 
 static DWORD WINAPI Setup(LPVOID) {
 	LoadMods();
+	Test_MinHook();
 	return 0;
 }
 
