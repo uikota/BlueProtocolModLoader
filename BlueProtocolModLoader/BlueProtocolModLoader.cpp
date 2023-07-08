@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 #include "DInput8.h"
 DirectInput8Create_t OriginalFunction = nullptr;
 HMODULE DInput8DLL = nullptr;
