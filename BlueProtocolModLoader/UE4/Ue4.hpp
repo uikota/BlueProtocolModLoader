@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <Psapi.h>
-//#include "../Utilities/EngineDefFinder.h"
+#include "../Utilities/EngineDefFinder.h"
 #include "Basic.hpp"
 #include "../Utilities/Pattern.h"
 #include "CoreUObject_classes.hpp"
@@ -29,10 +29,9 @@ namespace UE4
 		GWorldObjects = (DWORD64)(GameProfile::Instance.GWorld);
 		UWorld::GWorld = (UWorld**)GWorldObjects;
 
-		#ifdef UNREALENGINEMODLOADER_EXPORTS //Stops dumb errors from the ExampleMod shit
+		#ifdef BlueProtocolModLoader_EXPORTS
 		if (GameProfile::Instance.IsUObjectMissing)
 		{
-			Log::Warn("UObject Not Defined. Scanning for def.");
 			UE4::UObject* CoreUobjectObject;
 			UE4::UObject* UEObject;
 			if (GameProfile::Instance.IsUsingFChunkedFixedUObjectArray)
@@ -51,19 +50,16 @@ namespace UE4
 
 		if (GameProfile::Instance.IsUFieldMissing)
 		{
-			Log::Warn("UField Not Defined. Scanning for def.");
 			ClassDefFinder::FindUFieldDefs();
 			GameProfile::Instance.IsUFieldMissing = false;
 		}
 		if (GameProfile::Instance.IsUStructMissing)
 		{
-			Log::Warn("UStruct Not Defined. Scanning for def.");
 			ClassDefFinder::FindUStructDefs();
 			GameProfile::Instance.IsUStructMissing = false;
 		}
 		if (GameProfile::Instance.IsUFunctionMissing)
 		{
-			Log::Warn("UFunction Not Defined. Scanning for def.");
 			ClassDefFinder::FindUFunctionDefs();
 			GameProfile::Instance.IsUFunctionMissing = false;
 		}
@@ -72,7 +68,6 @@ namespace UE4
 		{
 			ClassDefFinder::FindUEProperty();
 		}
-		Log::Info("All Engine Classes Found");
 		#endif
 
 	}

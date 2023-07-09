@@ -170,6 +170,7 @@
     <ClInclude Include="UE4\CoreUObject_structs.hpp" />
     <ClInclude Include="UE4\Ue4.hpp" />
     <ClInclude Include="UMLDefs.h" />
+    <ClInclude Include="Utilities\EngineDefFinder.h" />
     <ClInclude Include="Utilities\Pattern.h" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +187,7 @@
     </ClCompile>
     <ClCompile Include="UE4\Basic.cpp" />
     <ClCompile Include="UE4\CoreUObject_functions.cpp" />
+    <ClCompile Include="Utilities\EngineDefFinder.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
