@@ -5,6 +5,9 @@
 #include <codecvt>
 #include <string>
 #include <filesystem>
+#include <iostream>
+#include "GameInfo/GameInfo.h"
+#include "hooks.h"
 
 void Init()
 {
@@ -76,6 +79,8 @@ BOOL APIENTRY DllMain(HMODULE Module,
 
 static DWORD WINAPI Setup(LPVOID) {
 	LoadMods();
+	GameProfile::SetupProfile();
+	Hooks::SetupHooks();
 	return 0;
 }
 

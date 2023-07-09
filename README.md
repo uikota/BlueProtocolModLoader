@@ -1,5 +1,6 @@
 # BlueProtocolModLoader
-forked by [DInput8HookingExample](https://github.com/pampersrocker/DInput8HookingExample)
+Respected [DInput8HookingExample](https://github.com/pampersrocker/DInput8HookingExample)
+Respected [UnrealModLoader](https://github.com/RussellJerome/UnrealModLoader)
 
 ⚠️こちら試作品及び開発中になります。今後変更されたりもっと良いのがでるかもしれません。
 
