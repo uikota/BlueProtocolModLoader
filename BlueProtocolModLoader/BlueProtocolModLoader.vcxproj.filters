@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="UE4">
+      <UniqueIdentifier>{669bd1f2-f322-4734-8096-50198ae8ac37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameInfo">
+      <UniqueIdentifier>{fb6ac102-fb8b-46fc-9f40-5444b880ac3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{bbebcb2b-06a3-46b1-b424-dd4f66538264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{720cfdf1-c527-45f0-9f12-d63f1a5686cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,6 +39,36 @@
     <ClInclude Include="dllmain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hooks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UE4\Basic.hpp">
+      <Filter>UE4</Filter>
+    </ClInclude>
+    <ClInclude Include="UE4\CoreUObject_classes.hpp">
+      <Filter>UE4</Filter>
+    </ClInclude>
+    <ClInclude Include="UE4\CoreUObject_parameters.hpp">
+      <Filter>UE4</Filter>
+    </ClInclude>
+    <ClInclude Include="UE4\CoreUObject_structs.hpp">
+      <Filter>UE4</Filter>
+    </ClInclude>
+    <ClInclude Include="UE4\Ue4.hpp">
+      <Filter>UE4</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo\GameInfo.h">
+      <Filter>GameInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Pattern.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\mem.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="UMLDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +79,21 @@
     </ClCompile>
     <ClCompile Include="DLLMain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UE4\Basic.cpp">
+      <Filter>UE4</Filter>
+    </ClCompile>
+    <ClCompile Include="UE4\CoreUObject_functions.cpp">
+      <Filter>UE4</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfo\GameInfo.cpp">
+      <Filter>GameInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\mem.cpp">
+      <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

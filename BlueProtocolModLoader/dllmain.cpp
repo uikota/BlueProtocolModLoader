@@ -6,18 +6,8 @@
 #include <string>
 #include <filesystem>
 #include <iostream>
-#include "MinHook.h"
-#pragma comment(lib, "libMinHook-x64-v141-mtd.lib")
-
-
-// FIXME MinHook‚Ì“±“ü‚ÆƒeƒXƒg
-void Test_MinHook() {
-	if (MH_Initialize() == MH_OK)
-	{
-		std::cout << "MH_OK" << std::endl;
-	}
-
-}
+#include "GameInfo/GameInfo.h"
+#include "hooks.h"
 
 void Init()
 {
@@ -89,7 +79,8 @@ BOOL APIENTRY DllMain(HMODULE Module,
 
 static DWORD WINAPI Setup(LPVOID) {
 	LoadMods();
-	Test_MinHook();
+	GameProfile::SetupProfile();
+	Hooks::SetupHooks();
 	return 0;
 }
 
