@@ -2,6 +2,7 @@
 #include <string>
 #include "GameInfo/GameInfo.h"
 #include "UE4/Ue4.hpp"
+bool GameStateClassInitNotRan = true;
 
 namespace Hooks {
 
@@ -19,6 +20,22 @@ namespace Hooks {
 		PVOID hookInitGameState(void* Ret)
 		{
 			std::cout << "InitGameState" << std::endl;
+			if (GameStateClassInitNotRan)
+			{
+				UE4::InitSDK();
+
+				UE4::FTransform transform = UE4::FTransform::FTransform();
+				UE4::FActorSpawnParameters spawnParams = UE4::FActorSpawnParameters::FActorSpawnParameters();
+				if (GameProfile::Instance.StaticLoadObject)
+				{
+					std::cout << "StaticLoadObject Found" << std::endl;
+				}
+				else
+				{
+					std::cout << "StaticLoadObject Not Found" << std::endl;
+				}
+				GameStateClassInitNotRan = false;
+			}
 			return origInitGameState(Ret);
 		}
 
