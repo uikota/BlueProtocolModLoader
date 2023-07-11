@@ -76,7 +76,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>dinput8</TargetName>
-    <IncludePath>$(SolutionDir)MinHook_133_lib\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)MinHook_133_lib\include;$(SolutionDir)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)MinHook_133_lib\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,7 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>dinput8</TargetName>
-    <IncludePath>$(SolutionDir)MinHook_133_lib\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)MinHook_133_lib\include;$(SolutionDir)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)MinHook_133_lib\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -178,6 +178,7 @@
     <ClCompile Include="BlueProtocolModLoader.cpp" />
     <ClCompile Include="GameInfo\GameInfo.cpp" />
     <ClCompile Include="hooks.cpp" />
+    <ClCompile Include="Logger.h" />
     <ClCompile Include="Memory\mem.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

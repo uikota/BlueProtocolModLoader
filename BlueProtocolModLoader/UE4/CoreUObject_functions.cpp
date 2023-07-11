@@ -3,6 +3,8 @@
 #endif
 
 #include "CoreUObject_parameters.hpp"
+#include "spdlog/spdlog.h"
+
 namespace UE4
 {
 	//---------------------------------------------------------------------------
@@ -191,6 +193,7 @@ namespace UE4
 
 	void UObject::ProcessEvent(class UFunction* function, void* parms)
 	{
+		spdlog::info("ProcessEvent=>", function->GetFullName());
 		return reinterpret_cast<void(*)(UObject*, class UFunction*, void*)>(GameProfile::Instance.ProcessEvent)(this, function, parms);
 	}
 
