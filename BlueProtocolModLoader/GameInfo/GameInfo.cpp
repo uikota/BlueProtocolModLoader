@@ -4,13 +4,14 @@
 #include <filesystem>
 #include <sstream>
 #include "../Utilities/Pattern.h"
+#include "spdlog/spdlog.h"
 
 GameProfile GameProfile::Instance;
 
 DWORD StringToDWord(std::string str)
 {
 	unsigned int m_dwIP;
-	
+
 	std::istringstream ss(&str[2]);
 	ss >> std::hex >> m_dwIP;
 	return m_dwIP;
@@ -36,7 +37,7 @@ void GameProfile::SetupProfile()
 	GameProfile::Instance.GObject = (DWORD64)GetModuleHandleW(0) + StringToDWord("0x7213970");
 	GameProfile::Instance.GWorld = (DWORD64)GetModuleHandleW(0) + StringToDWord("0x73558d0");
 
-	
+
 	GameProfile::Instance.IsPropertyMissing = true;
 	GameProfile::Instance.IsFunctionPatterns = 0;
 
@@ -57,7 +58,7 @@ void GameProfile::SetupProfile()
 		{
 			auto ProcessAddyOffset = *reinterpret_cast<uint32_t*>(ProcessAddy + 16);
 			GameProfile::Instance.ProcessInternals = (ProcessAddy + 20 + ProcessAddyOffset);
-			//Log::Info("ProcessInternalFunction: 0x%p", (void*)GameProfile::Instance.ProcessInternals);
+			spdlog::info("ProcessInternalFunction: {}", (void*)GameProfile::Instance.ProcessInternals);
 		}
 	}
 
@@ -86,15 +87,11 @@ void GameProfile::SetupProfile()
 				}
 				else
 				{
-					//Log::Warn("StaticConstructObject_Internal Not Found! This will prevent Mods using the ModObjectInstance from working properly.");
+					spdlog::warn("StaticConstructObject_Internal Not Found! This will prevent Mods using the ModObjectInstance from working properly.");
 				}
 			}
 		}
 	}
 	GameProfile::Instance.StaticConstructObject_Internal = (DWORD64)MEM::GetAddressPTR(StaticConstructObject_Internal, 0x1, 0x5);
-	//Log::Info("StaticConstructObject_Internal 0x%p", (void*)GameProfile::SelectedGameProfile.StaticConstructObject_Internal);
-
-	//Log::Info("Setup %s", gamename.c_str());
-	//Hooks::SetupHooks(); // TODO
-
+	spdlog::info("StaticConstructObject_Internal {}", (void*)GameProfile::Instance.StaticConstructObject_Internal);
 }

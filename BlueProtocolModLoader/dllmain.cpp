@@ -8,6 +8,7 @@
 #include <iostream>
 #include "GameInfo/GameInfo.h"
 #include "hooks.h"
+#include "Logger.h"
 
 void Init()
 {
@@ -24,6 +25,7 @@ void Init()
 	AllocConsole();
 	FILE* consoleStream;
 	freopen_s(&consoleStream, "CONOUT$", "w", stdout);
+	Logger::Init();
 }
 
 void LoadMods() {
@@ -78,7 +80,8 @@ BOOL APIENTRY DllMain(HMODULE Module,
 }
 
 static DWORD WINAPI Setup(LPVOID) {
-	LoadMods();
+	// TODO NOT YET
+	//LoadMods();
 	GameProfile::SetupProfile();
 	Hooks::SetupHooks();
 	return 0;
