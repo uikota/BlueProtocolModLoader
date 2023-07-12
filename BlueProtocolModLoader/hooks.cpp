@@ -13,7 +13,7 @@ namespace Hooks {
 		PVOID(*origProcessFunction)(UE4::UObject*, UE4::FFrame*, void* const);
 		PVOID hookProcessFunction(UE4::UObject* obj, UE4::FFrame* Frame, void* const Result)
 		{
-			std::cout << "ProcessFunction" << std::endl;
+			spdlog::info("ProcessFunction");
 			return origProcessFunction(obj, Frame, Result);
 
 		}
@@ -21,7 +21,7 @@ namespace Hooks {
 		PVOID(*origInitGameState)(void*);
 		PVOID hookInitGameState(void* Ret)
 		{
-			std::cout << "InitGameState" << std::endl;
+			spdlog::info("InitGameState");
 			if (GameStateClassInitNotRan)
 			{
 				UE4::InitSDK();
@@ -30,11 +30,11 @@ namespace Hooks {
 				UE4::FActorSpawnParameters spawnParams = UE4::FActorSpawnParameters::FActorSpawnParameters();
 				if (GameProfile::Instance.StaticLoadObject)
 				{
-					std::cout << "StaticLoadObject Found" << std::endl;
+					spdlog::info("StaticLoadObject Found");
 				}
 				else
 				{
-					std::cout << "StaticLoadObject Not Found" << std::endl;
+					spdlog::warn("StaticLoadObject Not Found");
 				}
 				GameStateClassInitNotRan = false;
 			}
@@ -44,7 +44,9 @@ namespace Hooks {
 		PVOID(*origBeginPlay)(UE4::AActor*);
 		PVOID hookBeginPlay(UE4::AActor* Actor)
 		{
-			//auto Class = Actor->GetClass();
+			spdlog::info("BeginPlay");
+
+			auto Class = Actor->GetClass();
 			//if (Class != nullptr && (
 			//	Class->GetName() == "SBEnemyMetaInfo" ||
 			//	Class->GetName() == "BP_Foxhound_C" ||
@@ -65,8 +67,6 @@ namespace Hooks {
 			//	Class->GetName() == "BP_BattleHUD_C" &&
 			//	Class->GetName() == "SBWorldSettings")
 			//	) {
-			//	std::cout << "BeginPlay" << std::endl;
-			//	std::cout << Actor->GetFullName() << std::endl;
 			//	spdlog::info("BeginPlay=>{}", Actor->GetFullName());
 
 			//	// Show Functions
@@ -110,7 +110,7 @@ namespace Hooks {
 		PVOID(*origProcessEvent)(UE4::UObject*, UE4::UFunction*, void*);
 		PVOID hookProcessEvent(UE4::UObject* obj, UE4::UFunction* function, void* parms)
 		{
-			std::cout << "ProcessEvent" << std::endl;
+			spdlog::info("ProcessEvent");
 			return origProcessEvent(obj, function, parms);
 		}
 	};

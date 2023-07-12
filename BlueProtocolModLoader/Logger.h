@@ -17,6 +17,6 @@ namespace Logger {
 		//Instance = std::make_shared<spdlog::logger>(LOGGER_NAME, begin(sinks), end(sinks));
 
 		spdlog::set_default_logger(Instance);
-		spdlog::flush_every(std::chrono::seconds(3));
+		spdlog::flush_every(std::chrono::seconds(5));
 	}
 };

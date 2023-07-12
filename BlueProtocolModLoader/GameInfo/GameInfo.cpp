@@ -58,7 +58,7 @@ void GameProfile::SetupProfile()
 		{
 			auto ProcessAddyOffset = *reinterpret_cast<uint32_t*>(ProcessAddy + 16);
 			GameProfile::Instance.ProcessInternals = (ProcessAddy + 20 + ProcessAddyOffset);
-			spdlog::info("ProcessInternalFunction: 0x{}", (void*)GameProfile::Instance.ProcessInternals);
+			spdlog::info("ProcessInternalFunction: {}", (void*)GameProfile::Instance.ProcessInternals);
 		}
 	}
 
@@ -93,5 +93,5 @@ void GameProfile::SetupProfile()
 		}
 	}
 	GameProfile::Instance.StaticConstructObject_Internal = (DWORD64)MEM::GetAddressPTR(StaticConstructObject_Internal, 0x1, 0x5);
-	spdlog::info("StaticConstructObject_Internal 0x%p", (void*)GameProfile::Instance.StaticConstructObject_Internal);
+	spdlog::info("StaticConstructObject_Internal {}", (void*)GameProfile::Instance.StaticConstructObject_Internal);
 }
