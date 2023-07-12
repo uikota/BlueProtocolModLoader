@@ -13,8 +13,8 @@ namespace Logger {
 		std::vector<spdlog::sink_ptr> sinks;
 		sinks.push_back(std::make_shared<spdlog::sinks::stderr_color_sink_st>());
 		sinks.push_back(std::make_shared<spdlog::sinks::daily_file_format_sink_st>("logs/modloader.log", 23, 59));
-		Instance = std::make_shared<spdlog::async_logger>(LOGGER_NAME, sinks.begin(), sinks.end(), spdlog::thread_pool(), spdlog::async_overflow_policy::block);
-		//Instance = std::make_shared<spdlog::logger>(LOGGER_NAME, begin(sinks), end(sinks));
+		//Instance = std::make_shared<spdlog::async_logger>(LOGGER_NAME, sinks.begin(), sinks.end(), spdlog::thread_pool(), spdlog::async_overflow_policy::block);
+		Instance = std::make_shared<spdlog::logger>(LOGGER_NAME, begin(sinks), end(sinks));
 
 		spdlog::set_default_logger(Instance);
 		spdlog::flush_every(std::chrono::seconds(5));
